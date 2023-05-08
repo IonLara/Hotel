@@ -33,12 +33,20 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBOutlet weak var checkOutDateLabel: UILabel!
     @IBOutlet weak var checkOutDatePicker: UIDatePicker!
     
+    @IBOutlet weak var adultsNumberLabel: UILabel!
+    @IBOutlet weak var adultNumberStepper: UIStepper!
+    @IBOutlet weak var childrenNumberLabel: UILabel!
+    @IBOutlet weak var childrenNumberStepper: UIStepper!
+    
+    
     @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
         let firstName = firstNameTextField.text ?? ""
         let lastName = lastNameTextField.text ?? ""
         let email = emailTextField.text ?? ""
         let checkIn = checkInDatePicker.date
         let checkOut = checkOutDatePicker.date
+        let adults = Int(adultNumberStepper.value)
+        let children = Int(childrenNumberStepper.value)
         
         print("Done tapped")
         print("First Name: \(firstName)")
@@ -46,9 +54,15 @@ class AddRegistrationTableViewController: UITableViewController {
         print("Email: \(email)")
         print("Check In: \(checkIn)")
         print("Check Out: \(checkOut)")
+        print("Number of Adults: \(adults)")
+        print("Number of Children: \(children)")
     }
     @IBAction func datePickerValueChanged(_ sender: Any) {
         updateDateViews()
+    }
+    
+    @IBAction func stepperValueChanged(_ sender: UIStepper) {
+        updateNumberOfGuests()
     }
     
     func updateDateViews() {
@@ -56,6 +70,11 @@ class AddRegistrationTableViewController: UITableViewController {
         
         checkInDateLabel.text = checkInDatePicker.date.formatted(date: .abbreviated, time: .omitted)
         checkOutDateLabel.text = checkOutDatePicker.date.formatted(date: .abbreviated, time: .omitted)
+    }
+    
+    func updateNumberOfGuests() {
+        adultsNumberLabel.text = "\(Int(adultNumberStepper.value))"
+        childrenNumberLabel.text = "\(Int(childrenNumberStepper.value))"
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -104,5 +123,6 @@ class AddRegistrationTableViewController: UITableViewController {
         checkInDatePicker.date = startOfDay
         
         updateDateViews()
+        updateNumberOfGuests()
     }
 }
