@@ -13,6 +13,8 @@
 		62E2A10A2A095BE800B5A513 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E2A1082A095BE800B5A513 /* Main.storyboard */; };
 		62E2A10C2A095BEA00B5A513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62E2A10B2A095BEA00B5A513 /* Assets.xcassets */; };
 		62E2A10F2A095BEA00B5A513 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62E2A10D2A095BEA00B5A513 /* LaunchScreen.storyboard */; };
+		62E2A1172A095F4B00B5A513 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E2A1162A095F4B00B5A513 /* Data.swift */; };
+		62E2A1192A0962D500B5A513 /* AddRegistrationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62E2A1182A0962D500B5A513 /* AddRegistrationTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		62E2A10B2A095BEA00B5A513 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62E2A10E2A095BEA00B5A513 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		62E2A1102A095BEA00B5A513 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		62E2A1162A095F4B00B5A513 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		62E2A1182A0962D500B5A513 /* AddRegistrationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRegistrationTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +61,10 @@
 			isa = PBXGroup;
 			children = (
 				62E2A1022A095BE800B5A513 /* AppDelegate.swift */,
+				62E2A1162A095F4B00B5A513 /* Data.swift */,
 				62E2A1042A095BE800B5A513 /* SceneDelegate.swift */,
 				62E2A1062A095BE800B5A513 /* ViewController.swift */,
+				62E2A1182A0962D500B5A513 /* AddRegistrationTableViewController.swift */,
 				62E2A1082A095BE800B5A513 /* Main.storyboard */,
 				62E2A10B2A095BEA00B5A513 /* Assets.xcassets */,
 				62E2A10D2A095BEA00B5A513 /* LaunchScreen.storyboard */,
@@ -138,6 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62E2A1172A095F4B00B5A513 /* Data.swift in Sources */,
+				62E2A1192A0962D500B5A513 /* AddRegistrationTableViewController.swift in Sources */,
 				62E2A1072A095BE800B5A513 /* ViewController.swift in Sources */,
 				62E2A1032A095BE800B5A513 /* AppDelegate.swift in Sources */,
 				62E2A1052A095BE800B5A513 /* SceneDelegate.swift in Sources */,
