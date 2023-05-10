@@ -7,7 +7,22 @@
 
 import UIKit
 
-class AddRegistrationTableViewController: UITableViewController {
+class AddRegistrationTableViewController: UITableViewController, SelectRoomTypeTableViewControllerDelegate {
+    
+    var registration : Registration? {
+        guard let roomType = self.roomType else {return nil}
+        let firstName = firstNameTextField.text ?? ""
+        let lastName = lastNameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let checkInDate = checkInDatePicker.date
+        let checkOutDate = checkOutDatePicker.date
+        let adults = Int(adultNumberStepper.value)
+        let children = Int(childrenNumberStepper.value)
+        let hasWifi = wifiSwitch.isOn
+        
+        return Registration(firstName: firstName, lastName: lastName, email: email, checkInDate: checkInDate, checkOutDate: checkOutDate, numOfAdults: adults, numOfChildren: children, wifi: hasWifi, roomType: roomType)
+    }
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -38,31 +53,32 @@ class AddRegistrationTableViewController: UITableViewController {
     @IBOutlet weak var childrenNumberLabel: UILabel!
     @IBOutlet weak var childrenNumberStepper: UIStepper!
     
-    
-    @IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
-        let firstName = firstNameTextField.text ?? ""
-        let lastName = lastNameTextField.text ?? ""
-        let email = emailTextField.text ?? ""
-        let checkIn = checkInDatePicker.date
-        let checkOut = checkOutDatePicker.date
-        let adults = Int(adultNumberStepper.value)
-        let children = Int(childrenNumberStepper.value)
-        
-        print("Done tapped")
-        print("First Name: \(firstName)")
-        print("Last Name: \(lastName)")
-        print("Email: \(email)")
-        print("Check In: \(checkIn)")
-        print("Check Out: \(checkOut)")
-        print("Number of Adults: \(adults)")
-        print("Number of Children: \(children)")
+    @IBOutlet weak var wifiSwitch: UISwitch!
+    @IBAction func wifiSwitchChanging(_ sender: Any) {
     }
+    
+    @IBOutlet weak var roomTypeLabel: UILabel!
+    var roomType: RoomType?
+    
+    func updateRoomType() {
+        if let roomType = roomType {
+            roomTypeLabel.text = roomType.name
+        } else {
+            roomTypeLabel.text = "Not Set"
+        }
+    }
+    
     @IBAction func datePickerValueChanged(_ sender: Any) {
         updateDateViews()
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         updateNumberOfGuests()
+    }
+    
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     func updateDateViews() {
@@ -116,6 +132,18 @@ class AddRegistrationTableViewController: UITableViewController {
         tableView.beginUpdates()
         tableView.endUpdates()
     }
+    @IBSegueAction func selectRoomType(_ coder: NSCoder) -> SelectRoomTypeTableViewController? {
+        let selectRoomTypeController = SelectRoomTypeTableViewController(coder: coder)
+        selectRoomTypeController?.delegate = self
+        selectRoomTypeController?.roomType = roomType
+        
+        return selectRoomTypeController
+    }
+    
+    func selectRoomTypeTableViewController(_ controller: SelectRoomTypeTableViewController, didSelect: RoomType) {
+        self.roomType = didSelect
+        updateRoomType()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let startOfDay = Calendar.current.startOfDay(for: Date())
@@ -124,5 +152,6 @@ class AddRegistrationTableViewController: UITableViewController {
         
         updateDateViews()
         updateNumberOfGuests()
+        updateRoomType()
     }
 }
